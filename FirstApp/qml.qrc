@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>../../../../Image/background1.png</file>
+        <file>pickUser.qml</file>
+        <file>../../../../Image/Round_icon_button.png</file>
+        <file>../../../../Image/Done_32.png</file>
+        <file>../../../../Image/Add_new_32.png</file>
+        <file>bioMarkerSet.qml</file>
+    </qresource>
+</RCC>
