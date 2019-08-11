@@ -1,11 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>../../../../Image/background1.png</file>
-        <file>pickUser.qml</file>
-        <file>../../../../Image/Round_icon_button.png</file>
-        <file>../../../../Image/Done_32.png</file>
-        <file>../../../../Image/Add_new_32.png</file>
-        <file>bioMarkerSet.qml</file>
+        <file>BioMarkerSet.qml</file>
+        <file>Assets/Add_new_32.png</file>
+        <file>Assets/Add_new_48.png</file>
+        <file>Assets/background1.png</file>
+        <file>Assets/Done_32.png</file>
+        <file>Assets/Done_48.png</file>
+        <file>Assets/Round_icon_button.png</file>
+        <file>main.cpp</file>
+        <file>SplashScreen.qml</file>
+        <file>PickUser.qml</file>
+        <file>PickUser_Users.qml</file>
+        <file>PickUsers_Users_Userid.qml</file>
+        <file>BioMarkerSet_func.qml</file>
     </qresource>
 </RCC>
