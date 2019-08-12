@@ -34,6 +34,12 @@ Item {
             opacity: 0.6
         }
 
+        BioMarkerSet_func{
+            id:biofunc
+            x:440
+            y:195
+            anchors.bottomMargin: 100
+        }
 
     }
 }

@@ -9,9 +9,9 @@ Window {
     title: qsTr("MicroFludic")
 
     //SplashScreen { id: splashscreen }
-   // PickUser { id: pickuser }
+    //PickUser { id: pickuser }
    //  PickUser_Users{id: users}
     BioMarkerSet{id:biomarker}
-
+   // BioMarkerSet_func{id:bioFunc}
    // PickUsers_Users_Userid{id:userid}
 }
