@@ -4,11 +4,11 @@ Item {
     id:id_root
     property color colour: "#F4FF81"
 
-    property int hours: currentDate.getHours()
-    property int minutes:currentDate.getMinutes()
-    property int seconds:currentDate.getSeconds()
+    property int hr:  currDate.getHours()
+    property int min: currDate.getMinutes()
+    property int sec: currDate.getSeconds()
 
-    property var currentDate:new Date()
+    property var currDate:new Date()
 
     Timer{
         id:timer
@@ -16,7 +16,7 @@ Item {
         interval: 1000
         running: true
 
-        onTriggered: id_root.currentDate=new Date()
+        onTriggered: id_root. currDate=new Date()
     }
 
     Rectangle{
@@ -79,7 +79,7 @@ Item {
             bottom: id_plate.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        value: id_root.seconds
+        value: id_root.sec
     }
     
     MinuteNeedle{
@@ -88,7 +88,7 @@ Item {
              bottom: id_plate.bottom
              horizontalCenter: parent.horizontalCenter
          }
-         value: id_root.minutes
+         value: id_root.min
     }
 
     HourNeedle{
@@ -97,8 +97,8 @@ Item {
             bottom: id_plate.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        value: id_root.hours
-        valueminute: id_root.minutes
+        value: id_root.hr
+        valueminute: id_root.min
     }
 
 }
