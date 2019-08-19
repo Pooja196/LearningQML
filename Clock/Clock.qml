@@ -49,19 +49,19 @@ Item {
                 anchors.topMargin: 4
             }
     
-    Text {
-        anchors{
-            horizontalCenter: parent.horizontalCenter
-        }
-        x:0
-        y:id_plate.height*0.06
-        rotation: 360-index*30
-        text:hourContainer.hour==0 ? 12 : hourContainer.hour
-        font.pixelSize: id_plate.height*0.1
-        font.family: "Comic Sans MS"
+            Text {
+                anchors{
+                    horizontalCenter: parent.horizontalCenter
+                }
+                x:0
+                y:id_plate.height*0.06
+                rotation: 360-index*30
+                text:hourContainer.hour==0 ? 12 : hourContainer.hour
+                font.pixelSize: id_plate.height*0.1
+                font.family: "Comic Sans MS"
+          }
+      }
     }
-   }
-  }
  }
     
     Rectangle{

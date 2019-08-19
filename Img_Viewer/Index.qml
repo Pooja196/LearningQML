@@ -5,6 +5,11 @@ Item {
     signal indexChanged
     property int newInd : -1
 
+    Rectangle {
+        anchors.fill: root
+        color: "transparent"
+    }
+
     ListModel{
         id:listIndex
     }

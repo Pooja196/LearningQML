@@ -49,6 +49,6 @@ Item {
 
     MouseArea{
         anchors.fill: parent
-        onClicked: pageLoader.source="pickUser.qml"
+        onClicked: pageLoader.source="PickUser.qml"
     }
 }

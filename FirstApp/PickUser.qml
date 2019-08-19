@@ -8,6 +8,12 @@ Item {
 
     Image {
         id: background
+
+        Loader{
+            id:load
+            anchors.fill: parent
+        }
+
         anchors.fill: parent.Center
         source: "Assets/background1.png"
 
@@ -33,33 +39,29 @@ Item {
                id: okbuttonIcon
                x: 682
                y: 52
-               width: 50
-               height: 50
-               source: "Assets/Round_icon_button.png"
-               Image {
-                   id: okbuttonIcon1
-                  anchors.centerIn: parent
-                   width: 25
-                   height: 25
-                   source: "Assets/Done_32.png"
+               width: 30
+               height: 30
+               source: "Assets/Done_32.png"
+
+               MouseArea{
+                   anchors.fill: parent
+                   onClicked: {
+                       load.source="BioMarkerSet.qml"
+                   }
                }
            }
         Image {
                 id:addbuttonIcon
                 x: 622
                 y: 52
-                width: 50
-                height: 50
-                source: "Assets/Round_icon_button.png"
-                Image {
-                    id: addbuttonIcon1
-                    anchors.centerIn: parent
-                    width: 25
-                    height: 25
-                    source: "Assets/Add_new_32.png"
-                }
+                width: 30
+                height: 30
+                source: "Assets/Add_new_32.png"
             }
 
-        PickUser_Users {}
-    }
+        PickUser_Users {
+        id:user
+
+        }
+     }
 }

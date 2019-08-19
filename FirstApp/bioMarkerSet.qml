@@ -38,7 +38,6 @@ Item {
             id:biofunc
             x:440
             y:195
-            anchors.bottomMargin: 100
         }
 
     }

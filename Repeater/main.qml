@@ -24,7 +24,7 @@ Window {
     ColumnLayout{
         anchors.topMargin: 60
         anchors.fill: parent
-        spacing: 5
+        spacing: 1
         Repeater{
             model:5
             RowLayout{

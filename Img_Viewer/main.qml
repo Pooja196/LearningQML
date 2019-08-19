@@ -1,5 +1,4 @@
 import QtQuick 2.12
-import QtQuick.Window 2.12
 import "imagedata.js" as Data
 
 Rectangle{
@@ -63,7 +62,7 @@ Rectangle{
         }
 
 
-    Index{
+    Index {
         id:id_indexArea
         anchors{
             bottom: root.bottom
