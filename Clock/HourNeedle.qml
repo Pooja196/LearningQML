@@ -1,17 +1,17 @@
 import QtQuick 2.12
 
 Item {
-    id:id_root3
+    id:id_root
     property int value:0
-    property int granularity:0
+    property int granularity:12
     property int valueminute:0
     Rectangle{
         width: 2
-        height: id_root3.height*0.3
+        height: id_root.height*0.3
         color: "blue"
         anchors{
-            horizontalCenter: id_root3.horizontalCenter
-            bottom: id_root3.verticalCenter
+            horizontalCenter: id_root.horizontalCenter
+            bottom: id_root.verticalCenter
         }
         antialiasing: true
     }

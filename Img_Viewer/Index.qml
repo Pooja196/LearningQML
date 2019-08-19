@@ -12,7 +12,7 @@ Item {
     Component{
         id:component
         Item {
-            property int updateInd :root.newInd
+            property int updateIndex :root.newInd
             width: root.height
             height: root.height
 
@@ -33,7 +33,7 @@ Item {
                 }
             }
 
-            onUpdateIndChanged: {
+            onUpdateIndexChanged: {
                 if(id_index.mIndex==root.newInd){
                     id_index.color="red"
                 }

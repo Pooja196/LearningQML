@@ -73,7 +73,7 @@ Rectangle{
         height: root.height/10
 
         onIndexChanged: {
-            id_background.source = "img/" + Data.imglist[id_indexArea.newIndex]
+            id_background.source = "img/" + Data.imglist[id_indexArea.newInd]
         }
     }
 }

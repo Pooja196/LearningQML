@@ -4,11 +4,11 @@ Item {
     id:id_root
     property color colour: "#F4FF81"
 
-    property int hr:  currDate.getHours()
-    property int min: currDate.getMinutes()
-    property int sec: currDate.getSeconds()
+    property int hr: currentDate.getHours()
+    property int min: currentDate.getMinutes()
+    property int sec: currentDate.getSeconds()
 
-    property var currDate:new Date()
+    property var currentDate:new Date()
 
     Timer{
         id:timer
@@ -16,7 +16,7 @@ Item {
         interval: 1000
         running: true
 
-        onTriggered: id_root. currDate=new Date()
+        onTriggered: id_root. currentDate=new Date()
     }
 
     Rectangle{
