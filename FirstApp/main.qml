@@ -8,12 +8,13 @@ Window {
     width: 800; height: 480
     title: qsTr("MicroFludic")
 
-   // SplashScreen { id: splashscreen
-    // anchors.fill: parent
-   // }
-    PickUser { id: pickuser }
+    SplashScreen { id: splashscreen
+     anchors.fill: parent
+    }
+   // PickUser { id: pickuser }
    //  PickUser_Users{id: users}
    // BioMarkerSet{id:biomarker}
    // BioMarkerSet_func{id:bioFunc}
    // PickUsers_Users_Userid{id:userid}
+
 }

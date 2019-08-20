@@ -61,7 +61,6 @@ Item {
 
         PickUser_Users {
         id:user
-
         }
      }
 }
