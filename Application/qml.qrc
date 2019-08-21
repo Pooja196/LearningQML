@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>SplashScreen.qml</file>
+        <file>Assets/Add_new_32.png</file>
+        <file>Assets/background1.png</file>
+        <file>Assets/Done_32.png</file>
+        <file>PickUser.qml</file>
+        <file>AddUserBtn.qml</file>
+    </qresource>
+</RCC>

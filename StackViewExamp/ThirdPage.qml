@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.12
 Item {
     ColumnLayout{
         anchors.centerIn: parent
+        spacing:10
         Repeater{
             model:5
             Button{

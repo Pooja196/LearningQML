@@ -1,18 +1,21 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Controls.Material 2.12
 
 ApplicationWindow {
     visible: true
     width: 640
     height: 480
     title: qsTr("StackView")
-
+    Material.theme: Material.Light
+    Material.accent: Material.Green
     header: ToolBar{
         RowLayout{
             anchors.fill: parent
             ToolButton{
                 text: qsTr("<")
+                font.pixelSize: 30
                 onClicked: mystackview.pop()
             }
             Label{
@@ -22,6 +25,11 @@ ApplicationWindow {
                 verticalAlignment: Qt.AlignVCenter
                 Layout.fillWidth: true
             }
+            ToolButton {
+                          text: qsTr("⋮")
+                          font.pixelSize: 40
+                          onClicked: menu.open()
+                      }
         }
     }
 
