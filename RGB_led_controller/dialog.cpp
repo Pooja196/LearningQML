@@ -43,6 +43,7 @@ Dialog::Dialog(QWidget *parent) :
                     arduino_port_name=serialPortInfo.portName();
                     arduino_is_available=true;
                 }
+
             }
         }
     }
