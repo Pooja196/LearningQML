@@ -16,8 +16,6 @@ Dialog::Dialog(QWidget *parent) :
     arduino_is_available=false;
     arduino =new QSerialPort(this);
 
-    ui->TemplcdNumber->display("-------");
-
     foreach(const QSerialPortInfo &serialPortInfo,QSerialPortInfo::availablePorts())
     {
         if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier())
@@ -52,38 +50,40 @@ Dialog::Dialog(QWidget *parent) :
     }
 }
 
+void Dialog::readSerial()
+{
+    QStringList buffersplit = serialBuffer.split(",");
+    if(buffersplit.length()<=1)
+    {
+        serialData=arduino->readAll();
+
+       QString serialdata_string=QString(serialData);
+
+       QStringList serialdata_split=serialdata_string.split(",");
+
+        qDebug()<<serialData;
+        serialBuffer += QString::fromStdString(serialData.toStdString());
+        ui->accx->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[0]));
+        ui->accy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[1]));
+        ui->accz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[2]));
+        ui->gyrox->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[3]));
+        ui->gyroy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[4]));
+        ui->gyroz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[5]));
+    }
+    else
+    {
+        qDebug()<<buffersplit;
+        serialBuffer="";
+    }
+
+}
+
 Dialog::~Dialog()
 {
     if(arduino->isOpen())
     {
         arduino->close();
     }
+
     delete ui;
-}
-
-void Dialog::readSerial()
-{
-    //qDebug()<<"serialport works";
-      //qDebug()<<serialBuffer;
-
-      QStringList buffersplit = serialBuffer.split(",");
-      if(buffersplit.length()<3)
-      {
-          serialData=arduino->readAll();
-          ui->temp_value->setText(QString(serialData));
-          qDebug()<<serialData;
-          serialBuffer += QString::fromStdString(serialData.toStdString());
-      }
-      else
-      {
-          qDebug()<<buffersplit;
-          Dialog::updatelcd(buffersplit[1]);
-          serialBuffer="";
-      }
-
-}
-
-void Dialog::updatelcd(QString sensor_reading)
-{
-    ui->TemplcdNumber->display(sensor_reading);
 }
