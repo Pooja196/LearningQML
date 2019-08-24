@@ -41,7 +41,7 @@ Dialog::Dialog(QWidget *parent) :
         arduino->setParity(QSerialPort::NoParity);
         arduino->setStopBits(QSerialPort::OneStop);
         arduino->setFlowControl(QSerialPort::NoFlowControl);
-        QObject::connect(arduino,SIGNAL(readyRead()),this,SLOT(readSerial()));
+        QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readSerial()));
     }
     else
     {
@@ -53,16 +53,18 @@ Dialog::Dialog(QWidget *parent) :
 void Dialog::readSerial()
 {
     QStringList buffersplit = serialBuffer.split(",");
+
     if(buffersplit.length()<=1)
     {
-        serialData=arduino->readAll();
+        serialData = arduino->readAll();
 
-       QString serialdata_string=QString(serialData);
+       QString serialdata_string = QString(serialData);
 
-       QStringList serialdata_split=serialdata_string.split(",");
+       QStringList serialdata_split = serialdata_string.split(",");
 
         qDebug()<<serialData;
         serialBuffer += QString::fromStdString(serialData.toStdString());
+
         ui->accx->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[0]));
         ui->accy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[1]));
         ui->accz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[2]));
@@ -72,7 +74,6 @@ void Dialog::readSerial()
     }
     else
     {
-        qDebug()<<buffersplit;
         serialBuffer="";
     }
 
