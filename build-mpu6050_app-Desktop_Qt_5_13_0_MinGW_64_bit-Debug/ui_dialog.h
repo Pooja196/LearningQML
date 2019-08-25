@@ -44,10 +44,10 @@ public:
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QString::fromUtf8("Dialog"));
-        Dialog->resize(740, 289);
+        Dialog->resize(1287, 549);
         layoutWidget = new QWidget(Dialog);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 10, 84, 261));
+        layoutWidget->setGeometry(QRect(10, 10, 84, 451));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -85,7 +85,7 @@ public:
 
         layoutWidget1 = new QWidget(Dialog);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(100, 10, 121, 261));
+        layoutWidget1->setGeometry(QRect(100, 10, 121, 451));
         verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -123,7 +123,7 @@ public:
 
         customPlot = new QCustomPlot(Dialog);
         customPlot->setObjectName(QString::fromUtf8("customPlot"));
-        customPlot->setGeometry(QRect(260, 10, 451, 261));
+        customPlot->setGeometry(QRect(280, 10, 961, 451));
 
         retranslateUi(Dialog);
 

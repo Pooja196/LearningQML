@@ -32,6 +32,8 @@ private:
 
     QByteArray serialData;
     QString serialBuffer;
+
+     //QTimer timer_plot;
 };
 
 #endif // DIALOG_H

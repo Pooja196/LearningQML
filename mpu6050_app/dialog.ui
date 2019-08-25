@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>289</height>
+    <width>1287</width>
+    <height>549</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>84</width>
-     <height>261</height>
+     <height>451</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -73,7 +73,7 @@
      <x>100</x>
      <y>10</y>
      <width>121</width>
-     <height>261</height>
+     <height>451</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -124,10 +124,10 @@
   <widget class="QCustomPlot" name="customPlot" native="true">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>280</x>
      <y>10</y>
-     <width>451</width>
-     <height>261</height>
+     <width>961</width>
+     <height>451</height>
     </rect>
    </property>
   </widget>
