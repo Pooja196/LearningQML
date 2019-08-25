@@ -72,6 +72,7 @@ void Dialog::readSerial()
         ui->gyroy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[4]));
         ui->gyroz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[5]));
     }
+
     else
     {
         serialBuffer="";

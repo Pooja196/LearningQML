@@ -21,7 +21,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Dialog
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label_3;
     QLabel *label_2;
@@ -29,7 +29,7 @@ public:
     QLabel *label;
     QLabel *label_4;
     QLabel *label_5;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QLabel *accx;
     QLabel *accy;
@@ -42,80 +42,79 @@ public:
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QString::fromUtf8("Dialog"));
-        Dialog->resize(228, 282);
-        Dialog->setMaximumSize(QSize(495, 300));
-        widget = new QWidget(Dialog);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 10, 84, 261));
-        verticalLayout = new QVBoxLayout(widget);
+        Dialog->resize(740, 289);
+        layoutWidget = new QWidget(Dialog);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 84, 261));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         verticalLayout->addWidget(label_3);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         verticalLayout->addWidget(label_2);
 
-        label_6 = new QLabel(widget);
+        label_6 = new QLabel(layoutWidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
         verticalLayout->addWidget(label_6);
 
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
         verticalLayout->addWidget(label);
 
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(layoutWidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
         verticalLayout->addWidget(label_4);
 
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         verticalLayout->addWidget(label_5);
 
-        widget1 = new QWidget(Dialog);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(100, 10, 121, 261));
-        verticalLayout_2 = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(Dialog);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(100, 10, 121, 261));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        accx = new QLabel(widget1);
+        accx = new QLabel(layoutWidget1);
         accx->setObjectName(QString::fromUtf8("accx"));
 
         verticalLayout_2->addWidget(accx);
 
-        accy = new QLabel(widget1);
+        accy = new QLabel(layoutWidget1);
         accy->setObjectName(QString::fromUtf8("accy"));
 
         verticalLayout_2->addWidget(accy);
 
-        accz = new QLabel(widget1);
+        accz = new QLabel(layoutWidget1);
         accz->setObjectName(QString::fromUtf8("accz"));
 
         verticalLayout_2->addWidget(accz);
 
-        gyrox = new QLabel(widget1);
+        gyrox = new QLabel(layoutWidget1);
         gyrox->setObjectName(QString::fromUtf8("gyrox"));
 
         verticalLayout_2->addWidget(gyrox);
 
-        gyroy = new QLabel(widget1);
+        gyroy = new QLabel(layoutWidget1);
         gyroy->setObjectName(QString::fromUtf8("gyroy"));
 
         verticalLayout_2->addWidget(gyroy);
 
-        gyroz = new QLabel(widget1);
+        gyroz = new QLabel(layoutWidget1);
         gyroz->setObjectName(QString::fromUtf8("gyroz"));
 
         verticalLayout_2->addWidget(gyroz);
