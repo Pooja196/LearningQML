@@ -237,6 +237,7 @@ Makefile: ../mpu6050_app/mpu6050_app.pro C:/Qt/5.13.0/mingw73_64/mkspecs/win32-g
 		C:/Qt/5.13.0/mingw73_64/mkspecs/features/yacc.prf \
 		C:/Qt/5.13.0/mingw73_64/mkspecs/features/lex.prf \
 		../mpu6050_app/mpu6050_app.pro \
+		C:/Qt/5.13.0/mingw73_64/lib/Qt5PrintSupport.prl \
 		C:/Qt/5.13.0/mingw73_64/lib/Qt5Widgets.prl \
 		C:/Qt/5.13.0/mingw73_64/lib/Qt5Gui.prl \
 		C:/Qt/5.13.0/mingw73_64/lib/Qt5SerialPort.prl \
@@ -417,6 +418,7 @@ C:/Qt/5.13.0/mingw73_64/mkspecs/features/exceptions.prf:
 C:/Qt/5.13.0/mingw73_64/mkspecs/features/yacc.prf:
 C:/Qt/5.13.0/mingw73_64/mkspecs/features/lex.prf:
 ../mpu6050_app/mpu6050_app.pro:
+C:/Qt/5.13.0/mingw73_64/lib/Qt5PrintSupport.prl:
 C:/Qt/5.13.0/mingw73_64/lib/Qt5Widgets.prl:
 C:/Qt/5.13.0/mingw73_64/lib/Qt5Gui.prl:
 C:/Qt/5.13.0/mingw73_64/lib/Qt5SerialPort.prl:

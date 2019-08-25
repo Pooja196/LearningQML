@@ -15,6 +15,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -37,6 +38,7 @@ public:
     QLabel *gyrox;
     QLabel *gyroy;
     QLabel *gyroz;
+    QCustomPlot *customPlot;
 
     void setupUi(QDialog *Dialog)
     {
@@ -119,6 +121,9 @@ public:
 
         verticalLayout_2->addWidget(gyroz);
 
+        customPlot = new QCustomPlot(Dialog);
+        customPlot->setObjectName(QString::fromUtf8("customPlot"));
+        customPlot->setGeometry(QRect(260, 10, 451, 261));
 
         retranslateUi(Dialog);
 

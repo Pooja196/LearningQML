@@ -41,7 +41,52 @@ Dialog::Dialog(QWidget *parent) :
         arduino->setParity(QSerialPort::NoParity);
         arduino->setStopBits(QSerialPort::OneStop);
         arduino->setFlowControl(QSerialPort::NoFlowControl);
+
+        ui->customPlot->addGraph();
+        ui->customPlot->graph(0)->setPen(QPen(Qt::red));
+        ui->customPlot->graph(0)->setAntialiasedFill(false);
+        ui->customPlot->graph(0)->setName("AccX");
+
+        ui->customPlot->addGraph();
+        ui->customPlot->graph(1)->setPen(QPen(Qt::blue));
+        ui->customPlot->graph(1)->setAntialiasedFill(false);
+
+        ui->customPlot->addGraph();
+        ui->customPlot->graph(2)->setPen(QPen(Qt::green));
+        ui->customPlot->graph(2)->setAntialiasedFill(false);
+
+        ui->customPlot->addGraph();
+        ui->customPlot->graph(3)->setPen(QPen(Qt::yellow));
+        ui->customPlot->graph(3)->setAntialiasedFill(false);
+
+        ui->customPlot->addGraph();
+        ui->customPlot->graph(4)->setPen(QPen(Qt::gray));
+        ui->customPlot->graph(4)->setAntialiasedFill(false);
+
+        ui->customPlot->addGraph();
+        ui->customPlot->graph(5)->setPen(QPen(Qt::black));
+        ui->customPlot->graph(5)->setAntialiasedFill(false);
+
+
+        QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+        timeTicker->setTimeFormat("%s");
+        ui->customPlot->xAxis->setTicker(timeTicker);
+        ui->customPlot->axisRect()->setupFullAxesBox();
+
+        ui->customPlot->xAxis->setTickLabelFont(QFont(QFont().family(),8));
+        ui->customPlot->yAxis->setTickLabelFont(QFont(QFont().family(),8));
+        ui->customPlot->xAxis->setLabel("Time(s)");
+        ui->customPlot->yAxis->setLabel("Accelerometer and Gyroscope");
+
+        ui->customPlot->xAxis2->setVisible(true);
+        ui->customPlot->yAxis2->setVisible(true);
+        ui->customPlot->xAxis2->setTicks(false);
+        ui->customPlot->yAxis2->setTicks(false);
+        ui->customPlot->xAxis2->setTickLabels(false);
+        ui->customPlot->yAxis2->setTickLabels(false);
+
         QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readSerial()));
+
     }
     else
     {
@@ -54,7 +99,7 @@ void Dialog::readSerial()
 {
     QStringList buffersplit = serialBuffer.split(",");
 
-    if(buffersplit.length()<=1)
+    if(buffersplit.length() <= 1)
     {
         serialData = arduino->readAll();
 
@@ -71,11 +116,29 @@ void Dialog::readSerial()
         ui->gyrox->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[3]));
         ui->gyroy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[4]));
         ui->gyroz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[5]));
-    }
 
+        static QTime time(QTime::currentTime());
+        double key = time.elapsed() / 1000;
+        static double lastPointKey = 0;
+        if(key - lastPointKey > 0.002)
+        {
+            ui->customPlot->graph(0)->addData(key,serialdata_split[0].toDouble());
+            ui->customPlot->graph(1)->addData(key,serialdata_split[1].toDouble());
+            ui->customPlot->graph(2)->addData(key,serialdata_split[2].toDouble());
+            ui->customPlot->graph(3)->addData(key,serialdata_split[3].toDouble());
+            ui->customPlot->graph(4)->addData(key,serialdata_split[4].toDouble());
+            ui->customPlot->graph(5)->addData(key,serialdata_split[5].toDouble());
+            lastPointKey = key;
+        }
+
+        ui->customPlot->graph(0)->rescaleValueAxis();
+        ui->customPlot->xAxis->setRange(key, 8, Qt::AlignRight);
+        ui->customPlot->replot();
+
+    }
     else
     {
-        serialBuffer="";
+        serialBuffer = "";
     }
 
 }
