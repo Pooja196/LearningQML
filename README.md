@@ -8,7 +8,7 @@ Working projects in this directory are:
 
 1. 
 
-![](/e.jpg)
+![](/Arduino_accele_plot.png)
 
 ## Plot of Arduino-Accelerometer Data via `SerialPort`
 
