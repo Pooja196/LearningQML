@@ -1,6 +1,6 @@
 # Learning Qml Projects
 
-Set of projects made for learning Qml
+Set of projects made for learning **Qml**
 
 
 
@@ -8,7 +8,7 @@ Working projects in this directory are:
 
 1. 
 
-
+![e](.\e.jpg)
 
 ## Plot of Arduino-Accelerometer Data via `SerialPort`
 
