@@ -8,7 +8,7 @@ Working projects in this directory are:
 
 1. 
 
-![e](.\e.jpg)
+![](/e.jpg)
 
 ## Plot of Arduino-Accelerometer Data via `SerialPort`
 
