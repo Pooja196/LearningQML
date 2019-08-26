@@ -30,8 +30,13 @@ private:
     QString arduino_port_name;
     bool arduino_is_available;
 
-    QByteArray serialData;
-    QString serialBuffer;
+//    QByteArray serialData;
+//    QString serialBuffer;
+
+    QQueue<QString> serialdata;
+
+    QStringList serialdata_split;
+    QString serialdatastring;
 
     QTimer timer_plot;
 };

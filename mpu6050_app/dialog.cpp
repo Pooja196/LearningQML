@@ -113,28 +113,36 @@ Dialog::Dialog(QWidget *parent) :
 
 void Dialog::readSerial()
 {
-    QStringList buffersplit = serialBuffer.split(",");
+//    QStringList buffersplit = serialBuffer.split(",");
 
-    if(buffersplit.length() <= 1)
-    {
-        serialData = arduino->readAll();
+//    if(buffersplit.length() <= 1)
+//    {
+//        serialData = arduino->readAll();
 
-       QString serialdata_string = QString(serialData);
+//       QString serialdata_string = QString(serialData);
 
-       QStringList serialdata_split = serialdata_string.split(",");
+//       QStringList serialdata_split = serialdata_string.split(",");
 
-        qDebug()<<serialData;
-        serialBuffer += QString::fromStdString(serialData.toStdString());
+//        qDebug()<<serialData;
+//        serialBuffer += QString::fromStdString(serialData.toStdString());
+
+        serialdata.enqueue(arduino->readAll());
+
+        serialdatastring=serialdata.head();
+
+        qDebug()<<serialdatastring;
+
+        serialdata_split=serialdatastring.split(",");
 
         static QTime time(QTime::currentTime());
         double key = time.elapsed()/1000;
+
             ui->accx->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[0]));
             ui->accy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[1]));
             ui->accz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[2]));
             ui->gyrox->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[3]));
             ui->gyroy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[4]));
             ui->gyroz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[5]));
-
 
             ui->customPlot->graph(0)->addData(key,serialdata_split[0].toDouble());
             ui->customPlot->graph(1)->addData(key,serialdata_split[1].toDouble());
@@ -150,13 +158,16 @@ void Dialog::readSerial()
             ui->customPlot->graph(4)->rescaleValueAxis(true);
             ui->customPlot->graph(5)->rescaleValueAxis(true);
 
-        ui->customPlot->xAxis->setRange(key,300, Qt::AlignRight);
+        ui->customPlot->xAxis->setRange(key,100, Qt::AlignRight);
         ui->customPlot->replot();
-    }
-    else
-    {
-        serialBuffer = "";
-    }
+        serialdata.dequeue();
+        serialdata_split.clear();
+
+//    }
+//     else
+//     {
+//         serialBuffer = "";
+//     }
 
 }
 
