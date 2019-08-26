@@ -3,7 +3,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QDebug>
-#include<QtWidgets>
+#include <QtWidgets>
 #include <QMessageBox>
 
 Dialog::Dialog(QWidget *parent) :
@@ -45,41 +45,35 @@ Dialog::Dialog(QWidget *parent) :
         ui->customPlot->addGraph();
         ui->customPlot->graph(0)->setPen(QPen(Qt::red));
         ui->customPlot->graph(0)->setAntialiasedFill(false);
-        //ui->customPlot->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
         ui->customPlot->graph(0)->setName("AccX");
 
         ui->customPlot->addGraph();
         ui->customPlot->graph(1)->setPen(QPen(Qt::blue));
         ui->customPlot->graph(1)->setAntialiasedFill(false);
-        //ui->customPlot->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
         ui->customPlot->graph(1)->setName("AccY");
 
 
         ui->customPlot->addGraph();
         ui->customPlot->graph(2)->setPen(QPen(Qt::green));
         ui->customPlot->graph(2)->setAntialiasedFill(false);
-        //ui->customPlot->graph(2)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
         ui->customPlot->graph(2)->setName("AccZ");
 
 
         ui->customPlot->addGraph();
         ui->customPlot->graph(3)->setPen(QPen(Qt::yellow));
         ui->customPlot->graph(3)->setAntialiasedFill(false);
-        //ui->customPlot->graph(3)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
         ui->customPlot->graph(3)->setName("GyroX");
 
 
         ui->customPlot->addGraph();
         ui->customPlot->graph(4)->setPen(QPen(Qt::gray));
         ui->customPlot->graph(4)->setAntialiasedFill(false);
-       // ui->customPlot->graph(4)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
         ui->customPlot->graph(4)->setName("GyroY");
 
 
         ui->customPlot->addGraph();
         ui->customPlot->graph(5)->setPen(QPen(Qt::black));
         ui->customPlot->graph(5)->setAntialiasedFill(false);
-        //ui->customPlot->graph(5)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
         ui->customPlot->graph(5)->setName("GyroZ");
 
 
@@ -93,6 +87,7 @@ Dialog::Dialog(QWidget *parent) :
         ui->customPlot->yAxis->setTickLabelFont(QFont(QFont().family(),8));
         ui->customPlot->xAxis->setLabel("Time(s)");
         ui->customPlot->yAxis->setLabel("Accelerometer and Gyroscope");
+        ui->customPlot->yAxis->setRange(-4000,5000);
 
         ui->customPlot->xAxis2->setVisible(true);
         ui->customPlot->yAxis2->setVisible(true);
@@ -106,7 +101,7 @@ Dialog::Dialog(QWidget *parent) :
 
         QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readSerial()));
 
-        QObject::connect(arduino,SIGNAL(timeout()), this, SLOT(readSerial()));
+       QObject::connect(arduino,SIGNAL(timeout()), this, SLOT(readSerial()));
         timer_plot.start(0);
     }
     else
@@ -131,18 +126,16 @@ void Dialog::readSerial()
         qDebug()<<serialData;
         serialBuffer += QString::fromStdString(serialData.toStdString());
 
-        ui->accx->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[0]));
-        ui->accy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[1]));
-        ui->accz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[2]));
-        ui->gyrox->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[3]));
-        ui->gyroy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[4]));
-        ui->gyroz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[5]));
-
         static QTime time(QTime::currentTime());
-        double key = time.elapsed() / 1000;
-        static double lastPointKey = 0;
-        if(key - lastPointKey > 0.009)
-        {
+        double key = time.elapsed()/1000;
+            ui->accx->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[0]));
+            ui->accy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[1]));
+            ui->accz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[2]));
+            ui->gyrox->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[3]));
+            ui->gyroy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[4]));
+            ui->gyroz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[5]));
+
+
             ui->customPlot->graph(0)->addData(key,serialdata_split[0].toDouble());
             ui->customPlot->graph(1)->addData(key,serialdata_split[1].toDouble());
             ui->customPlot->graph(2)->addData(key,serialdata_split[2].toDouble());
@@ -157,16 +150,7 @@ void Dialog::readSerial()
             ui->customPlot->graph(4)->rescaleValueAxis(true);
             ui->customPlot->graph(5)->rescaleValueAxis(true);
 
-            lastPointKey = key;
-        }
-
-//        ui->customPlot->graph(0)->rescaleValueAxis();
-//        ui->customPlot->graph(1)->rescaleValueAxis();
-//        ui->customPlot->graph(2)->rescaleValueAxis();
-//        ui->customPlot->graph(3)->rescaleValueAxis();
-//        ui->customPlot->graph(4)->rescaleValueAxis();
-//        ui->customPlot->graph(5)->rescaleValueAxis();
-        ui->customPlot->xAxis->setRange(key, 400, Qt::AlignRight);
+        ui->customPlot->xAxis->setRange(key,300, Qt::AlignRight);
         ui->customPlot->replot();
     }
     else
