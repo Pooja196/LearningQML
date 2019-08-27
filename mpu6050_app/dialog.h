@@ -19,7 +19,6 @@ public:
 
 private slots:
     void readSerial();
-
 private:
     Ui::Dialog *ui;
 
@@ -38,7 +37,7 @@ private:
     QStringList serialdata_split;
     QString serialdatastring;
 
-    QTimer timer_plot;
+    //QTimer timer_plot;
 };
 
 #endif // DIALOG_H

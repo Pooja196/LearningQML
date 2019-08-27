@@ -12,22 +12,21 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    arduino_port_name="";
-    arduino_is_available=false;
-    arduino =new QSerialPort(this);
+    arduino_port_name = "";
+    arduino_is_available = false;
+    arduino = new QSerialPort(this);
 
     foreach(const QSerialPortInfo &serialPortInfo,QSerialPortInfo::availablePorts())
     {
         if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier())
         {
-            if(serialPortInfo.vendorIdentifier()==arduino_nano_vendor_id)
+            if(serialPortInfo.vendorIdentifier() == arduino_nano_vendor_id)
             {
-                if(serialPortInfo.productIdentifier()==arduino_nano_product_id)
+                if(serialPortInfo.productIdentifier() == arduino_nano_product_id)
                 {
-                    arduino_port_name=serialPortInfo.portName();
-                    arduino_is_available=true;
+                    arduino_port_name = serialPortInfo.portName();
+                    arduino_is_available = true;
                 }
-
             }
         }
     }
@@ -87,7 +86,7 @@ Dialog::Dialog(QWidget *parent) :
         ui->customPlot->yAxis->setTickLabelFont(QFont(QFont().family(),8));
         ui->customPlot->xAxis->setLabel("Time(s)");
         ui->customPlot->yAxis->setLabel("Accelerometer and Gyroscope");
-        ui->customPlot->yAxis->setRange(-4000,5000);
+        ui->customPlot->yAxis->setRange(-5000,5000);
 
         ui->customPlot->xAxis2->setVisible(true);
         ui->customPlot->yAxis2->setVisible(true);
@@ -96,13 +95,16 @@ Dialog::Dialog(QWidget *parent) :
         ui->customPlot->xAxis2->setTickLabels(false);
         ui->customPlot->yAxis2->setTickLabels(false);
 
-        connect(ui->customPlot->xAxis,SIGNAL(rangeChanged(QCPRange)),ui->customPlot->xAxis2,SLOT(setRange(QCPRange)));
-        connect(ui->customPlot->yAxis,SIGNAL(rangeChanged(QCPRange)),ui->customPlot->yAxis2,SLOT(setRange(QCPRange)));
+        connect(ui->customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)),
+                ui->customPlot->xAxis2, SLOT(setRange(QCPRange)));
+        connect(ui->customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)),
+                ui->customPlot->yAxis2, SLOT(setRange(QCPRange)));
 
-        QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readSerial()));
+        QObject::connect(arduino, SIGNAL(readyRead()),
+                         this, SLOT(readSerial()));
 
-       QObject::connect(arduino,SIGNAL(timeout()), this, SLOT(readSerial()));
-        timer_plot.start(0);
+//       QObject::connect(arduino,SIGNAL(timeout()), this, SLOT(readSerial()));
+//        timer_plot.start(0);
     }
     else
     {
@@ -126,6 +128,9 @@ void Dialog::readSerial()
 //        qDebug()<<serialData;
 //        serialBuffer += QString::fromStdString(serialData.toStdString());
 
+        static QTime time(QTime::currentTime());
+
+
         serialdata.enqueue(arduino->readAll());
 
         serialdatastring=serialdata.head();
@@ -134,9 +139,11 @@ void Dialog::readSerial()
 
         serialdata_split=serialdatastring.split(",");
 
-        static QTime time(QTime::currentTime());
         double key = time.elapsed()/1000;
+        static double lastPointKey = 0;
 
+        if(key - lastPointKey > 0.002)
+        {
             ui->accx->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[0]));
             ui->accy->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[1]));
             ui->accz->setText(QString("<span style=\" font-size:18pt; font-weight:600; color:#0000ff;\">%1</span>").arg(serialdata_split[2]));
@@ -157,7 +164,8 @@ void Dialog::readSerial()
             ui->customPlot->graph(3)->rescaleValueAxis(true);
             ui->customPlot->graph(4)->rescaleValueAxis(true);
             ui->customPlot->graph(5)->rescaleValueAxis(true);
-
+            lastPointKey = key;
+         }
         ui->customPlot->xAxis->setRange(key,100, Qt::AlignRight);
         ui->customPlot->replot();
         serialdata.dequeue();
@@ -170,6 +178,7 @@ void Dialog::readSerial()
 //     }
 
 }
+
 
 Dialog::~Dialog()
 {
