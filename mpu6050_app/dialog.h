@@ -19,6 +19,7 @@ public:
 
 private slots:
     void readSerial();
+    void plotGraph();
 private:
     Ui::Dialog *ui;
 
@@ -36,6 +37,8 @@ private:
 
     QStringList serialdata_split;
     QString serialdatastring;
+
+    int serialRecieveCount = 0;
 
     //QTimer timer_plot;
 };

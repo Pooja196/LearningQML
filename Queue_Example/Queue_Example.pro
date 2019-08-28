@@ -1,14 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-08-23T17:56:19
+# Project created by QtCreator 2019-08-27T15:31:09
 #
 #-------------------------------------------------
 
-QT       += core gui serialport printsupport concurrent
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = mpu6050_app
+TARGET = Queue_Example
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,12 +26,10 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        dialog.cpp \
-        qcustomplot.cpp
+        dialog.cpp
 
 HEADERS += \
-        dialog.h \
-        qcustomplot.h
+        dialog.h
 
 FORMS += \
         dialog.ui
