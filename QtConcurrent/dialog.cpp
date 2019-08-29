@@ -16,10 +16,10 @@ Dialog::~Dialog()
 
 void Dialog::on_btnstart_clicked()
 {
-    connect(&mjob,&myjob::on_number, this,&Dialog::newNumber);
-    connect(this,&Dialog::on_stop,&mjob,&myjob::stop);
+    connect(&mjob,&MyJob::on_number, this,&Dialog::newNumber);
+    connect(this,&Dialog::on_stop,&mjob,&MyJob::stop);
 
-    QFuture<void> test = QtConcurrent::run(this->mjob,&myjob::start,QString("Kitten"));
+    QFuture<void> test = QtConcurrent::run(this->mjob,&MyJob::start,QString("Kitten"));
 }
 
 void Dialog::on_btnstop_clicked()

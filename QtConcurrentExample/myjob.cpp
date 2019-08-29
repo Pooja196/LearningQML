@@ -1,8 +1,8 @@
 #include "myjob.h"
 
-MyJob::MyJob()
+MyJob::MyJob(QObject *parent) : QObject(parent)
 {
-    mstop = false;
+
 }
 
 void MyJob::start(QString name)
@@ -12,9 +12,9 @@ void MyJob::start(QString name)
     for(int i = 0; i < 999999; i++)
     {
         if(mstop) return;
-        qDebug() << "From thread: " << i;
+        qDebug() << " from thread : " << i;
         emit on_number(name,i);
-        QThread::currentThread() -> msleep(100);
+        QThread::currentThread() -> msleep(10);
     }
 }
 

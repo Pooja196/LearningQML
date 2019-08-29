@@ -2,10 +2,9 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include<QDebug>
-#include<QtConcurrent>
-#include"myjob.h"
-
+#include <QDebug>
+#include <QtConcurrent>
+#include "myjob.h"
 
 namespace Ui {
 class Dialog;
@@ -23,11 +22,11 @@ signals:
     void on_stop();
 
 private slots:
-    void on_btnstart_clicked();
-    void on_btnstop_clicked();
+    void on_btnStart_clicked();
+    void on_btnStop_clicked();
 
 public slots:
-    void newNumber(QString name, int number);
+   void newNumber(QString name, int number);
 
 private:
     Ui::Dialog *ui;
