@@ -27,10 +27,12 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         dialog.cpp \
+        plotter.cpp \
         qcustomplot.cpp
 
 HEADERS += \
         dialog.h \
+        plotter.h \
         qcustomplot.h
 
 FORMS += \

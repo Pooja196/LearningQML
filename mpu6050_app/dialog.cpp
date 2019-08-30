@@ -1,13 +1,5 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-#include <QSerialPort>
-#include <QSerialPortInfo>
-#include <QDebug>
-#include <QtWidgets>
-#include <QMessageBox>
-#include<QFuture>
-#include<QtConcurrent>
-#include<QFutureSynchronizer>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -33,6 +25,7 @@ Dialog::Dialog(QWidget *parent) :
             }
         }
     }
+
     if(arduino_is_available)
     {
         //Open and configure the serialport
@@ -106,8 +99,6 @@ Dialog::Dialog(QWidget *parent) :
         QObject::connect(arduino, SIGNAL(readyRead()),
                          this, SLOT(readSerial()));
 
-//       QObject::connect(arduino,SIGNAL(timeout()), this, SLOT(readSerial()));
-//        timer_plot.start(0);
     }
     else
     {
@@ -118,51 +109,35 @@ Dialog::Dialog(QWidget *parent) :
 
 void Dialog::readSerial()
 {
-//    QStringList buffersplit = serialBuffer.split(",");
+        receiveSerialData();
 
-//    if(buffersplit.length() <= 1)
-//    {
-//        serialData = arduino->readAll();
+        serialdatastring = serialdata.head();
 
-//       QString serialdata_string = QString(serialData);
+        serialdata_split = serialdatastring.split(",");
 
-//       QStringList serialdata_split = serialdata_string.split(",");
+        if(serialdata_split.length()<6)
+        {
+              serialRecieveCount++;
+        }
+        else
+        {
+            plotGraph();
+        }
 
-//        qDebug()<<serialData;
-//        serialBuffer += QString::fromStdString(serialData.toStdString());
-
-
-
-        serialdata.enqueue(arduino->readAll());
-
-        serialdatastring=serialdata.head();
-        serialRecieveCount++;
-
-        if(serialRecieveCount%1000 == 1) { qDebug()<< serialRecieveCount; }
-
-        serialdata_split=serialdatastring.split(",");
-
-        plotGraph();
-
-      // QFuture future=QtConcurrent::run(plotGraph());
-
-        ui->customPlot->replot();
         serialdata.dequeue();
         serialdata_split.clear();
+}
 
-//    }
-//     else
-//     {
-//         serialBuffer = "";
-//     }
-
+void Dialog::receiveSerialData()
+{
+    serialdata.enqueue(arduino->readLine());
 }
 
 void Dialog::plotGraph()
 {
     static QTime time(QTime::currentTime());
 
-    double key = time.elapsed()/10;
+    double key = time.elapsed()/1000.0;
     static double lastPointKey = 0;
 
     if(key - lastPointKey > 0.002)
@@ -189,7 +164,9 @@ void Dialog::plotGraph()
         ui->customPlot->graph(5)->rescaleValueAxis(true);
         lastPointKey = key;
      }
-    ui->customPlot->xAxis->setRange(key,100, Qt::AlignRight);
+
+    ui->customPlot->xAxis->setRange(key,8, Qt::AlignRight);
+    ui->customPlot->replot();
 }
 
 

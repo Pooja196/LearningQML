@@ -2,7 +2,14 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include <QtSerialPort>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QDebug>
+#include <QtWidgets>
+#include <QMessageBox>
+#include <QtConcurrent>
+#include <QThread>
+#include <QThreadPool>
 
 
 namespace Ui {
@@ -19,7 +26,7 @@ public:
 
 private slots:
     void readSerial();
-    void plotGraph();
+
 private:
     Ui::Dialog *ui;
 
@@ -30,9 +37,6 @@ private:
     QString arduino_port_name;
     bool arduino_is_available;
 
-//    QByteArray serialData;
-//    QString serialBuffer;
-
     QQueue<QString> serialdata;
 
     QStringList serialdata_split;
@@ -40,7 +44,9 @@ private:
 
     int serialRecieveCount = 0;
 
-    //QTimer timer_plot;
+    void receiveSerialData();
+
+    void plotGraph();
 };
 
 #endif // DIALOG_H

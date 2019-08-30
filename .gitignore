@@ -12,3 +12,7 @@ build-Queue_Example-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/Makefile.Release
 build-Queue_Example-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/ui_dialog.h
 *.o
 build-mpu6050_app-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/dialog.o
+build-mpu6050_app-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/moc_dialog.cpp
+build-mpu6050_app-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/dialog.o
+build-mpu6050_app-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/dialog.o
+build-mpu6050_app-Desktop_Qt_5_13_0_MinGW_64_bit-Release/ui_dialog.h
