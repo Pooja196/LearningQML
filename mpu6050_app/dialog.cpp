@@ -31,7 +31,7 @@ Dialog::Dialog(QWidget *parent) :
         //Open and configure the serialport
         arduino->setPortName(arduino_port_name);
         arduino->open(QSerialPort::ReadOnly);
-        arduino->setBaudRate(QSerialPort::Baud115200);
+        arduino->setBaudRate(QSerialPort::Baud9600);
         arduino->setDataBits(QSerialPort::Data8);
         arduino->setParity(QSerialPort::NoParity);
         arduino->setStopBits(QSerialPort::OneStop);
