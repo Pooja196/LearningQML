@@ -23,7 +23,6 @@ public:
     explicit SerialDataRead(QObject *parent = nullptr);
 
     void setSerialData(QString serialdatastring);
-     void readSerial();
 
 signals:
     void data1Changed();
@@ -38,7 +37,6 @@ private slots:
 
 private:
 
-    QSerialPort *arduino;
     QQueue<QString> serialdata;
 
     QStringList serialdata_split;

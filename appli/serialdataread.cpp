@@ -5,22 +5,6 @@ SerialDataRead::SerialDataRead(QObject *parent) : QObject(parent)
 
 }
 
-void SerialDataRead::readSerial()
-{
-    arduino = new QSerialPort(this);
-    arduino->setPortName("COM3");
-    arduino->open(QSerialPort::ReadOnly);
-    arduino->setBaudRate(QSerialPort::Baud9600);
-    arduino->setDataBits(QSerialPort::Data8);
-    arduino->setParity(QSerialPort::NoParity);
-    arduino->setStopBits(QSerialPort::OneStop);
-    arduino->setFlowControl(QSerialPort::NoFlowControl);
-
-    QObject::connect(arduino, SIGNAL(readyRead()),
-                     this, SLOT(receiveSerialData()));
-
-}
-
 void SerialDataRead::setSerialData(QString serialdatastring)
 {
 
@@ -47,8 +31,6 @@ void SerialDataRead::setSerialData(QString serialdatastring)
 
 QString SerialDataRead::receiveSerialData()
 {
-      serialdata.enqueue(arduino->readLine());
-
       serialdatastring = serialdata.head();
 
       return serialdatastring;
