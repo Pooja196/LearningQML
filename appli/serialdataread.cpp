@@ -36,6 +36,13 @@ void SerialDataRead::setSerialData(QString serialdatastring)
 
     serialdata_split.clear();
 
+    emit data1Changed();
+    emit data2Changed();
+    emit data3Changed();
+    emit data4Changed();
+    emit data5Changed();
+    emit data6Changed();
+
 }
 
 QString SerialDataRead::receiveSerialData()

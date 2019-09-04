@@ -13,22 +13,23 @@ Window {
     SerialDataRead{
         id:serialread
         onData1Changed: {
-
+           console.log(data1)
         }
-        onData2Changed: {
 
+        onData2Changed: {
+            console.log(data2)
         }
         onData3Changed: {
-
+               console.log(data3)
         }
         onData4Changed: {
-
+             console.log(data4)
         }
         onData5Changed: {
-
+            console.log(data5)
         }
         onData6Changed: {
-
+            console.log(dat6)
         }
     }
 
