@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<SerialPort>("SerialPortfunction",1,0,"SerialPort");
+    qmlRegisterType<SerialPort>("com.vvbiotech.serial", 1, 0, "SerialPort");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

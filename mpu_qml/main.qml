@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
-import SerialPortfunction 1.0
+import com.vvbiotech.serial 1.0
 
 Window {
     visible: true
@@ -11,15 +11,54 @@ Window {
     title: qsTr("Hello World")
 
     SerialPort{
-        id:serial
+        id: serial
 
         onData1Changed: {
-            accx.text="%1".arg(data1);
+        }
+        onData2Changed: {
+        }
+        onData3Changed: {
+        }
+        onData4Changed: {
+        }
+        onData5Changed: {
+        }
+        onData6Changed: {
         }
     }
 
-    TextField{
-        id:accx
-        text:"accx"
+    Column{
+        spacing: 10
+        Text {
+            id: accx
+            font.pixelSize: 20
+            text: serial.data1
+        }
+        Text {
+            id: accy
+            font.pixelSize: 20
+            text: serial.data2
+        }
+        Text {
+            id: accz
+            font.pixelSize: 20
+            text: serial.data3
+        }
+        Text {
+            id: gyrox
+            font.pixelSize: 20
+            text: serial.data4
+        }
+        Text {
+            id: gyroy
+            font.pixelSize: 20
+            text: serial.data5
+        }
+        Text {
+            id: gyroz
+            font.pixelSize: 20
+            text: serial.data6
+        }
     }
+
 }
